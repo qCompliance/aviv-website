@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aviv Compliance — Qapp, the AI Compliance Platform for Investment Advisers</title>
+<meta name="description" content="Qapp by Aviv Compliance: AI-powered marketing reviews, annual compliance reviews, autonomous KYC, policy generation and training for SEC-registered investment advisers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#070c17;
+  --ink-2:#0c1322;
+  --ink-3:#121b2e;
+  --paper:#f6f4ee;
+  --paper-2:#efece3;
+  --lime:#c9f24f;
+  --lime-deep:#9fd41f;
+  --mint:#3ddc97;
+  --slate:#9aa5b8;
+  --slate-dark:#5b6474;
+  --line:rgba(255,255,255,.09);
+  --line-dark:rgba(7,12,23,.12);
+  --display:"Bricolage Grotesque",sans-serif;
+  --serif:"Instrument Serif",serif;
+  --mono:"JetBrains Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--display);
+  background:var(--ink);
+  color:#eef1f6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--lime);color:var(--ink)}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:2000;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.mono{font-family:var(--mono)}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:rgba(7,12,23,.72);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{max-width:1180px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;color:#fff}
+.logo-mark{
+  width:34px;height:34px;border-radius:9px;background:var(--lime);
+  display:grid;place-items:center;font-weight:800;color:var(--ink);font-size:17px;
+  box-shadow:0 0 24px rgba(201,242,79,.35);
+}
+.logo-name{font-weight:700;font-size:17px;letter-spacing:-.02em}
+.logo-name span{color:var(--slate);font-weight:400}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{color:var(--slate);text-decoration:none;font-size:14.5px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-.01em;
+  padding:13px 24px;border-radius:99px;text-decoration:none;cursor:pointer;border:none;
+  transition:transform .2s cubic-bezier(.2,.8,.3,1.2),box-shadow .2s;
+}
+.btn-lime{background:var(--lime);color:var(--ink);box-shadow:0 4px 28px rgba(201,242,79,.25)}
+.btn-lime:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 8px 36px rgba(201,242,79,.4)}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.22)}
+.btn-ghost:hover{border-color:#fff;transform:translateY(-2px)}
+.btn-sm{padding:9px 18px;font-size:13.5px}
+.nav-burger{display:none}
+.hero{
+  position:relative;padding:170px 0 0;overflow:hidden;
+  background:
+    radial-gradient(900px 480px at 85% -10%,rgba(201,242,79,.13),transparent 60%),
+    radial-gradient(700px 500px at -10% 30%,rgba(61,220,151,.08),transparent 60%),
+    var(--ink);
+}
+.hero-grid-bg{
+  position:absolute;inset:0;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,black 30%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,black 30%,transparent 75%);
+}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.eyebrow{
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--lime);display:inline-flex;align-items:center;gap:10px;margin-bottom:26px;
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--lime)}
+h1{
+  font-size:clamp(46px,5.6vw,76px);font-weight:800;letter-spacing:-.035em;line-height:.98;
+  margin-bottom:26px;
+}
+h1 .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--lime);letter-spacing:-.01em}
+.hero-sub{font-size:19px;line-height:1.65;color:var(--slate);max-width:520px;margin-bottom:38px;font-weight:400}
+.hero-sub strong{color:#fff;font-weight:600}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:30px}
+.hero-note{font-family:var(--mono);font-size:12px;color:var(--slate-dark);letter-spacing:.04em}
+.rise{opacity:0;transform:translateY(26px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+.d1{animation-delay:.05s}.d2{animation-delay:.18s}.d3{animation-delay:.32s}.d4{animation-delay:.46s}.d5{animation-delay:.6s}
+.mock{
+  position:relative;border-radius:18px;
+  background:linear-gradient(160deg,#141d31,#0b1120 65%);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.4),0 0 90px rgba(201,242,79,.07);
+  overflow:hidden;transform:rotate(1.2deg);
+}
+.mock-chrome{display:flex;align-items:center;gap:8px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot:nth-child(1){background:#ff5f57}.dot:nth-child(2){background:#febc2e}.dot:nth-child(3){background:#28c840}
+.mock-url{font-family:var(--mono);font-size:11px;color:var(--slate-dark);margin-left:12px;background:rgba(255,255,255,.05);padding:4px 14px;border-radius:6px}
+.mock-body{display:grid;grid-template-columns:150px 1fr;min-height:340px}
+.mock-side{border-right:1px solid var(--line);padding:18px 14px;display:flex;flex-direction:column;gap:4px}
+.mock-side-item{font-size:12px;color:var(--slate-dark);padding:8px 10px;border-radius:7px;font-weight:500}
+.mock-side-item.on{background:rgba(201,242,79,.12);color:var(--lime)}
+.mock-main{padding:20px}
+.mock-title{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate-dark);margin-bottom:14px}
+.mock-card{
+  background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:11px;
+  padding:14px 16px;margin-bottom:11px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.mock-card-l{display:flex;flex-direction:column;gap:5px}
+.mock-card-name{font-size:13.5px;font-weight:600;color:#e8ecf3}
+.mock-card-rule{font-family:var(--mono);font-size:10.5px;color:var(--slate-dark)}
+.chip{font-family:var(--mono);font-size:10px;font-weight:600;padding:5px 11px;border-radius:99px;letter-spacing:.05em;white-space:nowrap}
+.chip-ok{background:rgba(61,220,151,.14);color:var(--mint);border:1px solid rgba(61,220,151,.3)}
+.chip-warn{background:rgba(254,188,46,.13);color:#fecf5e;border:1px solid rgba(254,188,46,.3)}
+.chip-run{background:rgba(201,242,79,.13);color:var(--lime);border:1px solid rgba(201,242,79,.3)}
+.chip-run::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--lime);margin-right:6px;animation:pulse 1.4s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.mock-bar{height:7px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:7px;width:180px}
+.mock-bar i{display:block;height:100%;width:82%;border-radius:99px;background:linear-gradient(90deg,var(--mint),var(--lime));animation:fill 2.4s cubic-bezier(.2,.7,.2,1) .8s both}
+@keyframes fill{from{width:0}}
+.mock-float{
+  position:absolute;right:-14px;bottom:-20px;background:var(--paper);color:var(--ink);
+  border-radius:13px;padding:14px 18px;box-shadow:0 18px 50px rgba(0,0,0,.5);
+  transform:rotate(-2deg);animation:floaty 5s ease-in-out infinite;
+}
+@keyframes floaty{0%,100%{transform:rotate(-2deg) translateY(0)}50%{transform:rotate(-2deg) translateY(-9px)}}
+.mock-float b{display:block;font-size:13px;font-weight:700}
+.mock-float span{font-family:var(--mono);font-size:10.5px;color:var(--slate-dark)}
+.ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;margin-top:110px;overflow:hidden;position:relative;background:rgba(255,255,255,.015)}
+.ticker-track{display:flex;gap:56px;white-space:nowrap;animation:scroll 36s linear infinite;width:max-content}
+.ticker span{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-dark);display:flex;align-items:center;gap:56px}
+.ticker b{color:var(--lime);font-weight:400}
+@keyframes scroll{to{transform:translateX(-50%)}}
+section{padding:110px 0}
+.sec-head{margin-bottom:64px;max-width:720px}
+h2{font-size:clamp(34px,3.8vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1.04;margin:18px 0 20px}
+h2 .serif{font-family:var(--serif);font-style:italic;font-weight:400}
+.sec-sub{font-size:17.5px;line-height:1.65;color:var(--slate)}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:18px;overflow:hidden;background:rgba(255,255,255,.02)}
+.stat{padding:36px 30px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:none}
+.stat b{font-size:clamp(30px,3vw,42px);font-weight:800;letter-spacing:-.03em;display:block;color:#fff}
+.stat b em{font-family:var(--serif);font-style:italic;color:var(--lime);font-weight:400}
+.stat span{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate-dark);display:block;margin-top:10px;line-height:1.6}
+.light{background:var(--paper);color:var(--ink);position:relative}
+.light::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:var(--lime)}
+.light .eyebrow{color:#5f7a10}
+.light .eyebrow::before{background:#5f7a10}
+.light .sec-sub{color:var(--slate-dark)}
+.qapp-badge{
+  display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--lime);
+  font-family:var(--mono);font-size:12px;letter-spacing:.1em;padding:8px 18px;border-radius:99px;margin-bottom:8px;
+}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.feature{
+  background:#fff;border:1px solid var(--line-dark);border-radius:16px;padding:34px 30px;
+  position:relative;overflow:hidden;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s;
+}
+.feature:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(7,12,23,.12)}
+.feature::after{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--lime);
+  transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.2,.7,.2,1);
+}
+.feature:hover::after{transform:scaleX(1)}
+.f-num{font-family:var(--mono);font-size:11px;color:#a8a294;letter-spacing:.1em;display:block;margin-bottom:22px}
+.f-icon{
+  width:46px;height:46px;border-radius:12px;background:var(--ink);color:var(--lime);
+  display:grid;place-items:center;margin-bottom:20px;font-size:20px;
+}
+.feature h3{font-size:20px;font-weight:700;letter-spacing:-.02em;margin-bottom:12px}
+.feature p{font-size:15px;line-height:1.65;color:var(--slate-dark)}
+.f-rule{font-family:var(--mono);font-size:10.5px;color:#8e9463;background:rgba(201,242,79,.28);padding:4px 10px;border-radius:6px;display:inline-block;margin-top:18px}
+.how{background:var(--ink-2);position:relative;overflow:hidden}
+.how::before{
+  content:"§";position:absolute;right:-40px;top:-80px;font-family:var(--serif);font-size:440px;
+  color:rgba(201,242,79,.05);line-height:1;pointer-events:none;
+}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.step{padding:44px 36px;border-right:1px solid var(--line);position:relative;background:rgba(255,255,255,.015);transition:background .3s}
+.step:hover{background:rgba(201,242,79,.045)}
+.step:last-child{border-right:none}
+.step-num{
+  font-family:var(--serif);font-style:italic;font-size:58px;color:var(--lime);line-height:1;display:block;margin-bottom:24px;
+}
+.step h3{font-size:21px;font-weight:700;letter-spacing:-.02em;margin-bottom:12px}
+.step p{font-size:15px;line-height:1.65;color:var(--slate)}
+.step .mono-tag{font-family:var(--mono);font-size:11px;color:var(--slate-dark);letter-spacing:.08em;text-transform:uppercase;display:block;margin-top:20px}
+.services-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.svc-list{display:flex;flex-direction:column}
+.svc{
+  display:flex;align-items:baseline;gap:20px;padding:20px 6px;border-bottom:1px solid var(--line-dark);
+  transition:padding-left .25s;cursor:default;
+}
+.svc:hover{padding-left:16px}
+.svc:hover .svc-name{color:#000}
+.svc-idx{font-family:var(--mono);font-size:11px;color:#a8a294;min-width:28px}
+.svc-name{font-size:17.5px;font-weight:600;letter-spacing:-.01em;color:#2a3242;transition:color .2s}
+.svc-side{position:sticky;top:110px}
+.svc-panel{
+  background:var(--ink);color:#eef1f6;border-radius:18px;padding:40px 36px;
+  box-shadow:0 30px 60px rgba(7,12,23,.25);
+}
+.svc-panel h3{font-size:24px;font-weight:700;letter-spacing:-.02em;margin-bottom:14px}
+.svc-panel h3 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--lime)}
+.svc-panel p{font-size:15.5px;line-height:1.7;color:var(--slate);margin-bottom:26px}
+.leaders{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.leader{
+  border:1px solid var(--line);border-radius:18px;padding:40px 36px;background:rgba(255,255,255,.02);
+  transition:transform .3s,border-color .3s;
+}
+.leader:hover{transform:translateY(-5px);border-color:rgba(201,242,79,.4)}
+.leader-top{display:flex;align-items:center;gap:18px;margin-bottom:24px}
+.avatar{
+  width:62px;height:62px;border-radius:16px;background:linear-gradient(140deg,var(--lime),var(--mint));
+  display:grid;place-items:center;font-weight:800;font-size:22px;color:var(--ink);flex-shrink:0;
+}
+.leader h3{font-size:21px;font-weight:700;letter-spacing:-.02em}
+.leader-role{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--lime);margin-top:5px}
+.leader p{font-size:15px;line-height:1.7;color:var(--slate);margin-bottom:20px}
+.creds{display:flex;flex-wrap:wrap;gap:8px}
+.cred{font-family:var(--mono);font-size:10.5px;color:var(--slate);border:1px solid var(--line);padding:5px 11px;border-radius:99px;letter-spacing:.03em}
+.cta{
+  position:relative;overflow:hidden;text-align:center;padding:130px 0;
+  background:
+    radial-gradient(720px 400px at 50% 110%,rgba(201,242,79,.16),transparent 65%),
+    var(--ink);
+}
+.cta h2{font-size:clamp(40px,5vw,68px);max-width:840px;margin:18px auto 24px}
+.cta .sec-sub{max-width:560px;margin:0 auto 42px}
+.cta-mail{font-family:var(--mono);font-size:13px;color:var(--slate-dark);margin-top:28px}
+.cta-mail a{color:var(--lime);text-decoration:none}
+.cta-mail a:hover{text-decoration:underline}
+footer{border-top:1px solid var(--line);padding:52px 0;background:var(--ink)}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.foot-l{display:flex;align-items:center;gap:11px}
+.foot small{font-family:var(--mono);font-size:11.5px;color:var(--slate-dark);letter-spacing:.04em;line-height:1.8}
+.foot-links{display:flex;gap:26px}
+.foot-links a{color:var(--slate);font-size:13.5px;text-decoration:none}
+.foot-links a:hover{color:#fff}
+@media(max-width:980px){
+  .hero-inner{grid-template-columns:1fr;gap:64px}
+  .features{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:nth-child(2){border-right:none}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .steps{grid-template-columns:1fr}
+  .step{border-right:none;border-bottom:1px solid var(--line)}
+  .step:last-child{border-bottom:none}
+  .services-grid{grid-template-columns:1fr}
+  .svc-side{position:static}
+  .leaders{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+@media(max-width:640px){
+  .features{grid-template-columns:1fr}
+  section{padding:80px 0}
+  .hero{padding-top:130px}
+  .mock{transform:none}
+  .mock-float{right:8px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#top">
+      <div class="logo-mark">A</div>
+      <div class="logo-name">Aviv<span> Compliance</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="#qapp">Qapp Platform</a>
+      <a href="platform.html">All Features</a>
+      <a href="#how">How It Works</a>
+      <a href="#services">Advisory Services</a>
+      <a href="#leadership">Leadership</a>
+      <a class="btn btn-lime btn-sm" href="mailto:uzirosha@avivcompliance.com?subject=Qapp%20Demo%20Request">Book a demo</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-grid-bg"></div>
+  <div class="wrap hero-inner">
+    <div>
+      <div class="eyebrow rise d1">Aviv Compliance · Est. 2017</div>
+      <h1 class="rise d2">Compliance,<br><span class="serif">handled.</span></h1>
+      <p class="hero-sub rise d3"><strong>Meet Qapp</strong> — the AI compliance platform for SEC-registered investment advisers, built by the compliance attorneys at Aviv. Marketing reviews, annual reviews, KYC, policies and training — <strong>drafted in minutes, signed off by experts.</strong></p>
+      <div class="hero-ctas rise d4">
+        <a class="btn btn-lime" href="mailto:uzirosha@avivcompliance.com?subject=Qapp%20Demo%20Request">Book a Qapp demo →</a>
+        <a class="btn btn-ghost" href="#services">Advisory services</a>
+      </div>
+      <div class="hero-note rise d5">BUILT BY ADVISERS ACT ATTORNEYS · SEC / CFTC / NFA / FINRA / FCA</div>
+    </div>
+
+    <div class="rise d3" style="position:relative">
+      <div class="mock">
+        <div class="mock-chrome">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          <div class="mock-url">qapp.avivcompliance.com</div>
+        </div>
+        <div class="mock-body">
+          <div class="mock-side">
+            <div class="mock-side-item on">⚡ Dashboard</div>
+            <div class="mock-side-item">Marketing Review</div>
+            <div class="mock-side-item">Annual Review</div>
+            <div class="mock-side-item">KYC</div>
+            <div class="mock-side-item">Policies</div>
+            <div class="mock-side-item">Training</div>
+          </div>
+          <div class="mock-main">
+            <div class="mock-title">Compliance Program — Live Status</div>
+            <div class="mock-card">
+              <div class="mock-card-l">
+                <div class="mock-card-name">Q3 Pitch Deck Review</div>
+                <div class="mock-card-rule">Marketing Rule · 206(4)-1</div>
+              </div>
+              <div class="chip chip-warn">3 FLAGS</div>
+            </div>
+            <div class="mock-card">
+              <div class="mock-card-l">
+                <div class="mock-card-name">Annual Compliance Review</div>
+                <div class="mock-card-rule">Rule 206(4)-7 · Draft memo ready</div>
+                <div class="mock-bar"><i></i></div>
+              </div>
+              <div class="chip chip-run">DRAFTING</div>
+            </div>
+            <div class="mock-card">
+              <div class="mock-card-l">
+                <div class="mock-card-name">New Investor Onboarding</div>
+                <div class="mock-card-rule">KYC · 14 checks completed</div>
+              </div>
+              <div class="chip chip-ok">✓ CLEARED</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mock-float">
+        <b>Memo drafted ✓</b>
+        <span>ready for CCO sign-off</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker">
+    <div class="ticker-track">
+      <span><b>§</b> SEC Marketing Rule 206(4)-1 <b>§</b> Annual Review Rule 206(4)-7 <b>§</b> Form ADV <b>§</b> Form PF <b>§</b> Custody Rule 206(4)-2 <b>§</b> Code of Ethics 204A-1 <b>§</b> Books &amp; Records 204-2 <b>§</b> CFTC / NFA <b>§</b> FCA SMCR &amp; FIT</span>
+      <span><b>§</b> SEC Marketing Rule 206(4)-1 <b>§</b> Annual Review Rule 206(4)-7 <b>§</b> Form ADV <b>§</b> Form PF <b>§</b> Custody Rule 206(4)-2 <b>§</b> Code of Ethics 204A-1 <b>§</b> Books &amp; Records 204-2 <b>§</b> CFTC / NFA <b>§</b> FCA SMCR &amp; FIT</span>
+    </div>
+  </div>
+</header>
+
+<section style="padding:90px 0">
+  <div class="wrap">
+    <div class="stats rv">
+      <div class="stat"><b>35<em>+</em></b><span>Years of combined compliance experience</span></div>
+      <div class="stat"><b>2017</b><span>Founded by an Advisers Act attorney</span></div>
+      <div class="stat"><b>5</b><span>Regulatory regimes covered — SEC · CFTC · NFA · FINRA · FCA</span></div>
+      <div class="stat"><b><em>min</em>utes</b><span>From upload to reviewed, cited draft</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="light" id="qapp">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="qapp-badge">⚡ QAPP — THE PLATFORM</div>
+      <h2>Your compliance program, <span class="serif">running itself.</span></h2>
+      <p class="sec-sub">Qapp automates the work that eats your week — and every output arrives as a documented, regulator-ready draft with the rule citations to back it up.</p>
+    </div>
+    <div class="features">
+      <div class="feature rv">
+        <span class="f-num">01</span>
+        <div class="f-icon">✦</div>
+        <h3>Marketing Material Review</h3>
+        <p>Upload a pitch deck, one-pager or website copy. Qapp flags performance-presentation issues, missing disclosures and prohibited statements — with the exact provision cited on every flag.</p>
+        <span class="f-rule">SEC Marketing Rule 206(4)-1</span>
+      </div>
+      <div class="feature rv">
+        <span class="f-num">02</span>
+        <div class="f-icon">§</div>
+        <h3>Annual Compliance Reviews</h3>
+        <p>Qapp assembles your testing results, findings and interviews into a complete annual review memo for CCO sign-off — the document examiners ask for first.</p>
+        <span class="f-rule">Rule 206(4)-7</span>
+      </div>
+      <div class="feature rv">
+        <span class="f-num">03</span>
+        <div class="f-icon">◉</div>
+        <h3>Autonomous KYC</h3>
+        <p>Investor onboarding checks that run themselves — identity, sanctions and background screening, with a clean audit trail and human review only where it matters.</p>
+        <span class="f-rule">AML / KYC</span>
+      </div>
+      <div class="feature rv">
+        <span class="f-num">04</span>
+        <div class="f-icon">✎</div>
+        <h3>Compliance Policy Generator</h3>
+        <p>Tailored policies and procedures generated from your actual business — strategies, custody arrangements, personnel — not a recycled off-the-shelf manual.</p>
+        <span class="f-rule">P&amp;P · Code of Ethics</span>
+      </div>
+      <div class="feature rv">
+        <span class="f-num">05</span>
+        <div class="f-icon">▶</div>
+        <h3>Tailored Training Generator</h3>
+        <p>Custom training sessions built around your firm's risks and recent regulatory developments — so annual training is relevant, not a checkbox.</p>
+        <span class="f-rule">Culture of Compliance</span>
+      </div>
+      <div class="feature rv">
+        <span class="f-num">06</span>
+        <div class="f-icon">🜲</div>
+        <h3>UK FCA F&amp;P Assessments</h3>
+        <p>Fitness &amp; propriety assessments under SMCR — questionnaire analysis, risk-rated memos and sourcebook citations for every certification decision.</p>
+        <span class="f-rule">FCA FIT · SMCR</span>
+      </div>
+    </div>
+    <div class="rv" style="text-align:center;margin-top:44px">
+      <a class="btn" style="background:var(--ink);color:var(--lime)" href="platform.html">Explore all 30+ modules →</a>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">How Qapp works</div>
+      <h2>AI drafts. <span class="serif" style="color:var(--lime)">Experts sign off.</span></h2>
+      <p class="sec-sub">Qapp isn't a chatbot bolted onto a checklist. It's the workflow of a seasoned compliance team, encoded — with your CCO (or ours) always holding the pen on the final call.</p>
+    </div>
+    <div class="steps rv">
+      <div class="step">
+        <span class="step-num">1</span>
+        <h3>Connect your program</h3>
+        <p>Upload your documents — marketing materials, policies, testing results, investor files. Qapp maps them against your regulatory obligations.</p>
+        <span class="mono-tag">→ Ingest &amp; map</span>
+      </div>
+      <div class="step">
+        <span class="step-num">2</span>
+        <h3>Qapp drafts &amp; flags</h3>
+        <p>Reviews, memos, policies and training land as complete drafts — every finding cited to the rule, every judgment call surfaced for a human.</p>
+        <span class="mono-tag">→ Draft &amp; cite</span>
+      </div>
+      <div class="step">
+        <span class="step-num">3</span>
+        <h3>Your CCO signs off</h3>
+        <p>Final review stays with a qualified professional — yours, or an outsourced CCO from Aviv's bench of former in-house CCOs and attorneys.</p>
+        <span class="mono-tag">→ Review &amp; file</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light" id="services">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">Aviv Advisory Services</div>
+      <h2 style="color:var(--ink)">The humans behind <span class="serif">the machine.</span></h2>
+      <p class="sec-sub">Qapp is built on a decade of hands-on regulatory work. That practice is still here — full-service compliance support for private fund managers, registered advisers, CTAs and CPOs.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc-list rv">
+        <div class="svc"><span class="svc-idx">01</span><span class="svc-name">SEC registration &amp; ERA filings</span></div>
+        <div class="svc"><span class="svc-idx">02</span><span class="svc-name">Tailored policies &amp; procedures</span></div>
+        <div class="svc"><span class="svc-idx">03</span><span class="svc-name">Mock regulatory audits</span></div>
+        <div class="svc"><span class="svc-idx">04</span><span class="svc-name">Regulatory examination support</span></div>
+        <div class="svc"><span class="svc-idx">05</span><span class="svc-name">Form PF &amp; regulatory filings</span></div>
+        <div class="svc"><span class="svc-idx">06</span><span class="svc-name">CFTC / NFA licensing — CTAs, CPOs &amp; IBs</span></div>
+        <div class="svc"><span class="svc-idx">07</span><span class="svc-name">Marketing material reviews</span></div>
+        <div class="svc"><span class="svc-idx">08</span><span class="svc-name">Annual compliance reviews</span></div>
+        <div class="svc"><span class="svc-idx">09</span><span class="svc-name">Customized compliance training</span></div>
+      </div>
+      <div class="svc-side rv">
+        <div class="svc-panel">
+          <h3>Outsourced <em>CCO</em></h3>
+          <p>A dedicated Chief Compliance Officer for your firm — former in-house CCOs and attorneys who've built compliance programs from the ground up and sat across the table from the SEC, CFTC, FINRA and NFA.</p>
+          <a class="btn btn-lime" href="mailto:info@avivcompliance.com?subject=Outsourced%20CCO%20Inquiry">Talk to us →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="leadership">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">Leadership</div>
+      <h2>Built by people who've <span class="serif" style="color:var(--lime)">done the work.</span></h2>
+    </div>
+    <div class="leaders">
+      <div class="leader rv">
+        <div class="leader-top">
+          <div class="avatar">UR</div>
+          <div>
+            <h3>Uzi Rosha</h3>
+            <div class="leader-role">Founder &amp; Managing Partner</div>
+          </div>
+        </div>
+        <p>Experienced Advisers Act attorney with extensive experience across private fund managers, broker-dealers and the commodity industry. Has built compliance programs from the ground up and worked directly with the SEC, CFTC, FINRA, NFA and international regulators. Co-author of a Risk and Compliance Handbook for the starting investment adviser, member of the NFA Business Conduct Committee, and a frequent speaker at compliance and investment industry events worldwide.</p>
+        <div class="creds">
+          <span class="cred">NY Bar (2004)</span>
+          <span class="cred">LL.M. Columbia</span>
+          <span class="cred">LL.B. Tel-Aviv</span>
+          <span class="cred">Series 7 · 24 · 63 · 55 · 3</span>
+          <span class="cred">NFA BCC Member</span>
+        </div>
+      </div>
+      <div class="leader rv">
+        <div class="leader-top">
+          <div class="avatar">TL</div>
+          <div>
+            <h3>Tsering Lama</h3>
+            <div class="leader-role">Compliance Leadership</div>
+          </div>
+        </div>
+        <p>Over 15 years of experience across hedge funds, private equity, real estate and infrastructure. Former Director of Global Compliance at Lone Star Funds and Hudson Advisors, with deep expertise spanning SEC, CFTC/NFA, Hong Kong SFC and Singapore MAS regulatory regimes — bringing a truly global perspective to cross-border compliance programs.</p>
+        <div class="creds">
+          <span class="cred">M.L.M. Compliance — HKU</span>
+          <span class="cred">B.B.A. Finance — Baruch</span>
+          <span class="cred">SEC · CFTC/NFA · SFC · MAS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="wrap">
+    <div class="eyebrow rv" style="justify-content:center;display:flex">See it on your own documents</div>
+    <h2 class="rv">Watch Qapp review your <span class="serif" style="color:var(--lime)">actual</span> marketing deck.</h2>
+    <p class="sec-sub rv">A 30-minute demo. Bring a pitch deck, a policy manual, or last year's annual review — and watch Qapp go to work on it, live.</p>
+    <div class="rv">
+      <a class="btn btn-lime" style="font-size:17px;padding:17px 36px" href="mailto:uzirosha@avivcompliance.com?subject=Qapp%20Demo%20Request">Book a Qapp demo →</a>
+    </div>
+    <p class="cta-mail rv">or write to <a href="mailto:info@avivcompliance.com">info@avivcompliance.com</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div class="foot-l">
+      <div class="logo-mark" style="width:28px;height:28px;font-size:14px;border-radius:7px">A</div>
+      <small>© 2026 Aviv Compliance, LLC. All rights reserved.<br>New York · California · Illinois</small>
+    </div>
+    <div class="foot-links">
+      <a href="#qapp">Qapp</a>
+      <a href="#services">Services</a>
+      <a href="#leadership">Leadership</a>
+      <a href="mailto:info@avivcompliance.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach((el,i)=>{
+  el.style.transitionDelay=(i%3)*0.09+'s';
+  io.observe(el);
+});
+</script>
+</body>
+</html>
